@@ -10,7 +10,7 @@ The challenge:  Produce similar results as Glasswing - using models everyone has
 
 **Autonomous vulnerability scanner and source-code hunter.** Built on
 `genai-pyo3`, a native Rust-backed LLM runtime speaking every major
-provider (Anthropic, OpenAI, OpenRouter, OrcaRouter, Ollama, LM Studio,
+provider (Anthropic, OpenAI, OpenRouter, OrcaRouter, Runcrate, Ollama, LM Studio,
 Together, Groq, DeepSeek, MiniMax, Gemini, any OpenAI-compatible endpoint).
 
 Clearwing is a dual-mode offensive-security tool:

@@ -189,6 +189,28 @@ PROVIDER_PRESETS: tuple[ProviderPreset, ...] = (
         provider_adapter="openai",
     ),
     ProviderPreset(
+        key="runcrate",
+        display_name="Runcrate",
+        description="OpenAI-compatible inference API on an AI cloud. Open-weight "
+        "DeepSeek / Qwen / Kimi / GLM / gpt-oss models via `org/model` names.",
+        docs_url="https://www.runcrate.ai/dashboard/api-keys",
+        default_base_url="https://api.runcrate.ai/v1",
+        default_model="deepseek-ai/DeepSeek-V3.2",
+        api_key_env_var="RUNCRATE_API_KEY",
+        alt_models=(
+            "moonshotai/Kimi-K2.6",
+            "Qwen/Qwen3-235B-A22B-Instruct-2507",
+            "zai-org/GLM-5.2",
+            "openai/gpt-oss-120b",
+        ),
+        tier_models={
+            "small": "openai/gpt-oss-120b",
+            "mid": "deepseek-ai/DeepSeek-V3.2",
+            "large": "moonshotai/Kimi-K2.6",
+        },
+        provider_adapter="openai",
+    ),
+    ProviderPreset(
         key="ollama",
         display_name="Ollama (local, native adapter)",
         description="Local models, free, no API key. Uses the native "

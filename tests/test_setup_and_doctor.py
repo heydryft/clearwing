@@ -86,6 +86,17 @@ class TestProviderCatalog:
         assert preset.provider_adapter == "openai"
         assert preset.is_openai_compat
 
+    def test_runcrate_preset(self):
+        preset = preset_by_key("runcrate")
+        assert preset is not None
+        assert preset.display_name == "Runcrate"
+        assert preset.default_base_url == "https://api.runcrate.ai/v1"
+        assert preset.api_key_env_var == "RUNCRATE_API_KEY"
+        assert preset.provider_adapter == "openai"
+        assert preset.is_openai_compat
+        assert preset.default_model == "deepseek-ai/DeepSeek-V3.2"
+        assert set(preset.tier_models) == {"small", "mid", "large"}
+
     def test_openai_oauth_preset_is_not_openai_compat(self):
         preset = preset_by_key("openai-oauth")
         assert preset is not None

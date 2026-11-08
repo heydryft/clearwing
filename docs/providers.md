@@ -18,7 +18,7 @@ Backends covered below:
 - **OpenAI (Responses API)** — GPT-5.x / o-series via `/v1/responses`
   (`openai_resp` adapter). Required for GPT-5.x and o-series.
 - **OpenAI OAuth (ChatGPT)** — Plus/Pro login via Codex backend (`openai_codex`).
-- **OpenRouter, OrcaRouter, Together, Groq, Fireworks, DeepSeek, LM Studio, vLLM, custom** —
+- **OpenRouter, OrcaRouter, Runcrate, Together, Groq, Fireworks, DeepSeek, LM Studio, vLLM, custom** —
   anything that speaks `/v1/chat/completions` (`openai` adapter).
 - **MiniMax** — M2.7 / M2.5 via the Anthropic-compatible endpoint
   (`anthropic` adapter at `api.minimax.io/anthropic`).
@@ -262,6 +262,25 @@ provider:
   adapter: openai
 ```
 
+## Runcrate
+
+[Runcrate](https://www.runcrate.ai) is an AI cloud with an
+OpenAI-compatible inference API. Model names are the open-weight
+`org/model` ids: `deepseek-ai/DeepSeek-V3.2`, `moonshotai/Kimi-K2.6`,
+`Qwen/Qwen3-235B-A22B-Instruct-2507`, `zai-org/GLM-5.2` or
+`openai/gpt-oss-120b`. Create a key in the
+[Runcrate dashboard](https://www.runcrate.ai/dashboard/api-keys) and point
+Clearwing at it with the `openai` adapter. It is a preset in the setup
+wizard, so you can also just run `clearwing setup --provider runcrate`.
+
+```bash
+export CLEARWING_BASE_URL=https://api.runcrate.ai/v1
+export CLEARWING_API_KEY=$RUNCRATE_API_KEY
+export CLEARWING_MODEL=deepseek-ai/DeepSeek-V3.2
+
+clearwing sourcehunt /path/to/repo
+```
+
 ## Ollama
 
 Ollama is spoken natively by `rust-genai` via its own adapter — no
@@ -460,6 +479,7 @@ Models that definitely work (tested during Phase 5):
 - Anthropic: `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-haiku-4-5-20251001`
 - OpenRouter: any `anthropic/*`, `openai/gpt-4o`, `openai/gpt-4o-mini`
 - OrcaRouter: any `anthropic/*`, `openai/gpt-5.5`, `openai/gpt-4o`, `deepseek/deepseek-chat`, `orcarouter/auto`
+- Runcrate: `deepseek-ai/DeepSeek-V3.2`, `moonshotai/Kimi-K2.6`, `openai/gpt-oss-120b` (the preset's tier models)
 - OpenAI direct: `gpt-4o`, `gpt-4o-mini`, `o1-preview` (no tool calling on o1)
 - Ollama (qwen2.5-coder:32b, llama3.3:70b with function-calling prompts)
 - Groq: `llama-3.3-70b-versatile`, `qwen-2.5-coder-32b`
